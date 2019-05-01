@@ -1,14 +1,22 @@
 <html>
 <head>
   <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
+  <title>Testing WebAssembly</title>
 </head>
 <body>
+<div id="root">Loading...</div>
 <script type="module">
   import { greet, default as init } from './run_wasm_in_alipay.js';
 
+  const root = document.querySelector('#root');
+
   (async function main() {
-    await init('./run_wasm_in_alipay_bg.wasm');
-    alert(greet("wasm"));
+    try {
+      await init('./run_wasm_in_alipay_bg.wasm');
+      root.innerHTML = '<h3>' + greet(window.navigator.userAgent) + '</h3>';
+    } catch (e) {
+      root.innerHTML = '<h3>Whoops! :(, WebAssembly failed to run!</h3>';
+    }
   })();
 </script>
 </body>
