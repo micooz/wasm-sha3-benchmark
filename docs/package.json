@@ -1,0 +1,15 @@
+{
+  "name": "run-wasm-in-alipay",
+  "collaborators": [
+    "micooz <micooz@hotmail.com>"
+  ],
+  "version": "0.1.0",
+  "files": [
+    "run_wasm_in_alipay_bg.wasm",
+    "run_wasm_in_alipay.js",
+    "run_wasm_in_alipay.d.ts"
+  ],
+  "module": "run_wasm_in_alipay.js",
+  "types": "run_wasm_in_alipay.d.ts",
+  "sideEffects": "false"
+}

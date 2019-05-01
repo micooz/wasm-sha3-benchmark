@@ -1,0 +1,15 @@
+<html>
+<head>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
+</head>
+<body>
+<script type="module">
+  import { greet, default as init } from './run_wasm_in_alipay.js';
+
+  (async function main() {
+    await init('./run_wasm_in_alipay_bg.wasm');
+    alert(greet("wasm"));
+  })();
+</script>
+</body>
+</html>
