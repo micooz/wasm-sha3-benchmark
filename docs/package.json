@@ -1,15 +1,21 @@
 {
-  "name": "run-wasm-in-alipay",
+  "name": "wasm-sha3-benchmark",
   "collaborators": [
     "micooz <micooz@hotmail.com>"
   ],
+  "description": "Benchmark between Rust wasm and js-sha3",
   "version": "0.1.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/micooz/wasm-sha3-benchmark"
+  },
   "files": [
-    "run_wasm_in_alipay_bg.wasm",
-    "run_wasm_in_alipay.js",
-    "run_wasm_in_alipay.d.ts"
+    "wasm_sha3_benchmark_bg.wasm",
+    "wasm_sha3_benchmark.js",
+    "wasm_sha3_benchmark.d.ts"
   ],
-  "module": "run_wasm_in_alipay.js",
-  "types": "run_wasm_in_alipay.d.ts",
+  "module": "wasm_sha3_benchmark.js",
+  "types": "wasm_sha3_benchmark.d.ts",
   "sideEffects": "false"
 }

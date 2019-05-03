@@ -67,15 +67,15 @@ function getUint32Memory() {
     return cachegetUint32Memory;
 }
 /**
-* @param {string} name
+* @param {string} text
 * @returns {string}
 */
-export function greet(name) {
-    const ptr0 = passStringToWasm(name);
+export function sha3_256(text) {
+    const ptr0 = passStringToWasm(text);
     const len0 = WASM_VECTOR_LEN;
     const retptr = globalArgumentPtr();
     try {
-        wasm.greet(retptr, ptr0, len0);
+        wasm.sha3_256(retptr, ptr0, len0);
         const mem = getUint32Memory();
         const rustptr = mem[retptr / 4];
         const rustlen = mem[retptr / 4 + 1];
@@ -92,7 +92,7 @@ export function greet(name) {
 
 }
 
-__exports.greet = greet;
+__exports.sha3_256 = sha3_256;
 
 const heap = new Array(32);
 
@@ -114,7 +114,7 @@ __exports.__wbindgen_object_drop_ref = __wbindgen_object_drop_ref;
 
 function init(module) {
     let result;
-    const imports = { './run_wasm_in_alipay': __exports };
+    const imports = { './wasm_sha3_benchmark': __exports };
     if (module instanceof URL || typeof module === 'string' || module instanceof Request) {
 
         const response = fetch(module);

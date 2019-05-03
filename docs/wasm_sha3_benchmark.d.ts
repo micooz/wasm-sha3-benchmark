@@ -1,9 +1,9 @@
 /* tslint:disable */
 /**
-* @param {string} name 
+* @param {string} text 
 * @returns {string} 
 */
-export function greet(name: string): string;
+export function sha3_256(text: string): string;
 
 /**
 * If `module_or_path` is {RequestInfo}, makes a request and

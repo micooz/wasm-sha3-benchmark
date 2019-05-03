@@ -1,7 +1,10 @@
 [package]
-name = "run-wasm-in-alipay"
+name = "wasm-sha3-benchmark"
 version = "0.1.0"
 authors = ["micooz <micooz@hotmail.com>"]
+description = "Benchmark between Rust wasm and js-sha3"
+repository = "https://github.com/micooz/wasm-sha3-benchmark"
+license = "MIT"
 edition = "2018"
 
 [lib]
@@ -9,3 +12,4 @@ crate-type = ["cdylib"]
 
 [dependencies]
 wasm-bindgen = "0.2.42"
+sha3 = "0.8.2"

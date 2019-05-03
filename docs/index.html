@@ -4,19 +4,42 @@
   <title>Testing WebAssembly</title>
 </head>
 <body>
-<div id="root">Loading...</div>
+<pre id="root"></pre>
+<script src="https://cdn.jsdelivr.net/npm/js-sha3@0.8.0/src/sha3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.11/lodash.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/benchmark@2.1.4/benchmark.min.js"></script>
 <script type="module">
-  import { greet, default as init } from './run_wasm_in_alipay.js';
+  import { sha3_256, default as init } from './wasm_sha3_benchmark.js';
 
   const root = document.querySelector('#root');
+  const println = str => root.innerText += `${str}\n`;
 
   (async function main() {
+    println('Loading wasm...');
+
     try {
-      await init('./run_wasm_in_alipay_bg.wasm');
-      root.innerHTML = '<h3>' + greet(window.navigator.userAgent) + '</h3>';
-    } catch (e) {
-      root.innerHTML = '<h3>Whoops! :(, WebAssembly failed to run!</h3>';
+      await init('./wasm_sha3_benchmark_bg.wasm');
+    } catch (err) {
+      return println('Your browser is not support WebAssembly.\n' + err.message);
     }
+
+    println('Running benchmark, please wait...\n');
+    const hashInput = 'hello_world';
+    const suite = new Benchmark.Suite;
+    suite
+      .add('wasm#sha3_256', function () {
+        sha3_256(hashInput);
+      })
+      .add('js-sha3#sha3_256', function () {
+        window.sha3_256(hashInput);
+      })
+      .on('cycle', function (event) {
+        println(event.target.toString());
+      })
+      .on('complete', function () {
+        println('\nFastest is ' + this.filter('fastest').map('name'));
+      })
+      .run({ async: true });
   })();
 </script>
 </body>
